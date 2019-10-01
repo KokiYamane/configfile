@@ -114,7 +114,11 @@ if ! shopt -oq posix; then
 fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+
 # powerline
 # 先に、Menlo-forPowerlineをなどの記号文字を含むフォントをダウンロードして、ターミナルのフォントに指定する必要があります。
-export PS1='\[\e[30;44m\] \h \[\e[34;46m\]\[\e[30m\] \w \[\e[36;49m\]\[\e[0m\] '
-# (文字黒/背景青) ホスト名 (文字青/背景水色)▶︎(文字黒) ディレクトリ (文字水色/背景色なし)▶︎(装飾なし)
+export PS1='\[\e[30;44m\] \t \[\e[34;46m\]\[\e[30m\] \w \[\e[36;49m\]\[\e[0m\] '
+# (文字黒/背景青) 時刻 (文字青/背景水色)▶︎(文字黒) ディレクトリ (文字水色/背景色なし)▶︎(装飾なし)
