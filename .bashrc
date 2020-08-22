@@ -12,66 +12,10 @@ C() {
   esac
 }
 
-git_status() {
-  local modified=0
-  local cached=0
-  local untracked=0
-
-  while read -r line; do
-    if [ "$line" = '_?_?_' ]; then
-      untracked=1
-      continue
-    fi
-
-    if [[ "$line" =~ ^_[^[:space:]]_.?_ ]]; then
-      cached=1
-    fi
-
-    if [[ "$line" =~ ^_._[^[:space:]]_ ]]; then
-      modified=1
-    fi
-  done < <(git status --short | cut -b -2 | sed -e 's/\(.\)\(.*\)/_\1_\2_/')
-
-  if [ $modified -ne 0 ]; then
-    C red
-    echo -n 'M'
-  fi
-
-  if [ $cached -ne 0 ]; then
-    C green
-    echo -n 'C'
-  fi
-
-  if [ $untracked -ne 0 ]; then
-    C red
-    echo -n '?'
-  fi
-
-  if [ -n "$(git stash list)" ]; then
-    C cyan
-    echo -n 'S'
-  fi
-  C reset
-}
-
-git_branch() {
-  local branch
-  branch="$(git branch 2>/dev/null | grep '^\*' | sed -e "s/^* //")"
-  echo -n "${branch}"
-  C reset
-}
-
-ps1_git() {
-  if ! git status --ignore-submodules &>/dev/null; then
-    return
-  fi
-  echo "$(C cyan)$(git_branch)[$(git_status)]"
-}
-
 PS1='\n[\#] `C blue`\t '
 PS1="${PS1}"'`C green`\u@\h`C reset`'
 PS1="${PS1}"' `C yellow`\w`C reset`'
-PS1="${PS1}"' `ps1_git`'
+PS1="${PS1}"' `ps1_git.sh`'
 PS1="${PS1}"'\n`C red`❯`C yellow`❯`C green`❯`C reset` '
 
-export PS1
+export LANG='ja_JP.UTF-8'
