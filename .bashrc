@@ -12,10 +12,10 @@ C() {
   esac
 }
 
-PS1='\n[\#] `C blue`\t '
-PS1="${PS1}"'`C green`\u@\h`C reset`'
-PS1="${PS1}"' `C yellow`\w`C reset`'
-PS1="${PS1}"' `ps1_git.sh`'
+PS1='\n[\#] `C blue`◷\t '
+PS1="${PS1}"'`C green`\u@\h'
+PS1="${PS1}"' `C yellow`\w'
+PS1="${PS1}"' `C cyan``ps1_git.sh`'
 PS1="${PS1}"'\n`C red`❯`C yellow`❯`C green`❯`C reset` '
 
 export LANG='ja_JP.UTF-8'
