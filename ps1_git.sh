@@ -1,13 +1,13 @@
 C() {
   case $1 in
-    black)    echo -e -n "\033[1;30m";;
-    red)      echo -e -n "\033[1;31m";;
-    green)    echo -e -n "\033[1;32m";;
-    yellow)   echo -e -n "\033[1;33m";;
-    blue)     echo -e -n "\033[1;34m";;
-    magenta)  echo -e -n "\033[1;35m";;
-    cyan)     echo -e -n "\033[1;36m";;
-    white)    echo -e -n "\033[1;37m";;
+    black)    echo -e -n "\033[30m";;
+    red)      echo -e -n "\033[31m";;
+    green)    echo -e -n "\033[32m";;
+    yellow)   echo -e -n "\033[33m";;
+    blue)     echo -e -n "\033[34m";;
+    magenta)  echo -e -n "\033[35m";;
+    cyan)     echo -e -n "\033[36m";;
+    white)    echo -e -n "\033[37m";;
     *) echo -e -n "\033[0m";;
   esac
 }
@@ -65,7 +65,7 @@ ps1_git() {
   if ! git status --ignore-submodules &>/dev/null; then
     return
   fi
-  echo "$(C cyan)$(git_branch)[$(git_status)]"
+  echo "$(git_branch)[$(git_status)]"
 }
 
 ps1_git
